@@ -459,37 +459,34 @@ document.addEventListener('keydown', function(event) {
     if(event.keyCode == 37) {//LeftKey
        horizontalAngle+=lookSpeed;
 		
-    }else if(event.keyCode == 38) {//UpKey
+    } if(event.keyCode == 38) {//UpKey
       verticalAngle+=lookSpeed;
     }
-    else if(event.keyCode == 39) {//RightKey
+     if(event.keyCode == 39) {//RightKey
        horizontalAngle-=lookSpeed;
     }
-	else if(event.keyCode == 40) {//DownKey
+	 if(event.keyCode == 40) {//DownKey
        verticalAngle-=lookSpeed;
     }
-	else if(event.keyCode == 87) {//w
+	 if(event.keyCode == 87) {//w
 	
 	vec3.add(position,position,translate);
      // position+=moveSpeed*camRotation;
-    }else if(event.keyCode == 83) {//s
+    } if(event.keyCode == 83) {//s
 	vec3.subtract(position,position,translate);
      // position+=moveSpeed*camRotation;
-    }else if(event.keyCode == 65) {//a
+    } if(event.keyCode == 65) {//a
 	vec3.add(right,right,translate);
 	vec3.scale(right,right,moveSpeed);
 	vec3.subtract(position,position,right);
      // position+=moveSpeed*camRotation;
-    }else if(event.keyCode == 68) {//d
+    } if(event.keyCode == 68) {//d
 	vec3.add(right,right,translate);
 	vec3.scale(right,right,moveSpeed);
 	vec3.add(position,position,right);
      // position+=moveSpeed*camRotation;
     }
-	else{
-		return;
-		
-	}
+
 	vec3.set(right,
 		Math.sin(horizontalAngle - 3.14/2.0),
 		0,
