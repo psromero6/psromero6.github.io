@@ -346,20 +346,20 @@ var InitDemo = function () {
 	var xrotation = new Float32Array(16);
 	var yrotation = new Float32Array(16);
 	camRotation=vec3.create;
-	verticalAngle=0;
-	horizontalAngle=0;
+	xAxisAngle=0;
+	yAxisAngle=0;
 	
 	right=vec3.create();
 	up=vec3.create();
 	vec3.set(right,
-		Math.sin(horizontalAngle - 3.14/2.0),
+		Math.sin(yAxisAngle - 3.14/2.0),
 		0,
-		Math.cos(horizontalAngle - 3.14/2.0));
+		Math.cos(yAxisAngle - 3.14/2.0));
 	
 	vec3.set(camRotation,
-		Math.cos(verticalAngle) * Math.sin(horizontalAngle),
-		Math.sin(verticalAngle),
-		Math.cos(verticalAngle) * Math.cos(horizontalAngle));
+		Math.cos(xAxisAngle) * Math.sin(yAxisAngle),
+		Math.sin(xAxisAngle),
+		Math.cos(xAxisAngle) * Math.cos(yAxisAngle));
 
 	up=vec3.cross(up, right, camRotation);
 	position=vec3.create();
@@ -408,7 +408,8 @@ var InitDemo = function () {
 	var worldMatrix = new Float32Array(16);
 	var viewMatrix = new Float32Array(16);
 	var ProjMatrix = new Float32Array(16);
-	var camRotation,verticalAngle,horizontalAngle;
+	var camRotation;
+	var xAxisAngle,yAxisAngle,zAxisAngle;
 	var right,up;
 	var position;
 	
@@ -419,18 +420,19 @@ var InitDemo = function () {
 	
 	
 var resetCamera = function(){
-	verticalAngle=0;
-	horizontalAngle=0;
+	xAxisAngle=0;
+	yAxisAngle=0;
+	zAxisAngle=0;
 
 	vec3.set(right,
-		Math.sin(horizontalAngle - 3.14/2.0),
+		Math.sin(yAxisAngle - 3.14/2.0),
 		0,
-		Math.cos(horizontalAngle - 3.14/2.0));
+		Math.cos(yAxisAngle - 3.14/2.0));
 	
 	vec3.set(camRotation,
-		Math.cos(verticalAngle) * Math.sin(horizontalAngle),
-		Math.sin(verticalAngle),
-		Math.cos(verticalAngle) * Math.cos(horizontalAngle));
+		Math.cos(xAxisAngle) * Math.sin(yAxisAngle),
+		Math.sin(xAxisAngle),
+		Math.cos(xAxisAngle) * Math.cos(yAxisAngle));
 
 	up=vec3.cross(up, right, camRotation);
 	position=vec3.create();
@@ -445,7 +447,7 @@ var resetCamera = function(){
 	
 	
 document.addEventListener('keydown', function(event) {
-	var lookSpeed= 0.01;
+	var lookSpeed= 0.005;
 	var moveSpeed= 0.1;
 	var identityMatrix = new Float32Array(16);
 	var translation = vec3.create();
@@ -453,20 +455,20 @@ document.addEventListener('keydown', function(event) {
 	var translate;
 	translate=vec3.create();
 	vec3.scale(translate,camRotation,moveSpeed);
-	
+		
 	
 	
     if(event.keyCode == 37) {//LeftKey
-       horizontalAngle+=lookSpeed;
+       yAxisAngle+=lookSpeed;
 		
     } if(event.keyCode == 38) {//UpKey
-      verticalAngle+=lookSpeed;
+      xAxisAngle+=lookSpeed;
     }
      if(event.keyCode == 39) {//RightKey
-       horizontalAngle-=lookSpeed;
+       yAxisAngle-=lookSpeed;
     }
 	 if(event.keyCode == 40) {//DownKey
-       verticalAngle-=lookSpeed;
+       xAxisAngle-=lookSpeed;
     }
 	 if(event.keyCode == 87) {//w
 	
@@ -487,15 +489,16 @@ document.addEventListener('keydown', function(event) {
      // position+=moveSpeed*camRotation;
     }
 
-	vec3.set(right,
-		Math.sin(horizontalAngle - 3.14/2.0),
+vec3.set(right,
+		Math.sin(yAxisAngle- 3.14/2.0),
 		0,
-		Math.cos(horizontalAngle - 3.14/2.0));
-	
+		Math.cos(yAxisAngle- 3.14/2.0));
+
+		
 	vec3.set(camRotation,
-		Math.cos(verticalAngle) * Math.sin(horizontalAngle),
-		Math.sin(verticalAngle),
-		Math.cos(verticalAngle) * Math.cos(horizontalAngle));
+		Math.cos(xAxisAngle) * Math.sin(yAxisAngle),
+		Math.sin(xAxisAngle),
+		Math.cos(xAxisAngle) * Math.cos(yAxisAngle));
 
 	up=vec3.cross(up, right, camRotation);
 	var target;
