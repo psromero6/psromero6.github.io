@@ -3,9 +3,11 @@
 		<title>WebGL - Simple triangle</title>
 	</head>
 	<body onload="InitDemo();">
+	<p align="center">
 		<canvas id="game-surface" width ="800" height="600">
 	Your browser does not support HTML5
 		</canvas>
+		</p>
 		<br />
 		WASD=Translate  Arrows=Rotate 1=zoomIn 2=zoomOut
 		<br />
@@ -40,7 +42,7 @@
 		Lines<input type="radio" name="renderMode" value="GL_LINES"> 
 		Points<input type="radio" name="renderMode" value="GL_POINTS"> 
 		<br>
-		<hr>
+		
 		<input type="button" value="ToggleObjectRoate" onclick="toggleObjectRotate()">
 		<br>
 		<script src="obj-handler.js">
