@@ -9,16 +9,17 @@ var vertexShaderText =
 	'precision mediump float;',
 	'',
 	'attribute vec3 vertPosition;',
-	'attribute vec2 vertTexCoord;',
-	'varying vec2 fragTexCoord;',
+	'uniform vec3 vertColor;',
+	'varying vec3 fragColor;',
 	'uniform mat4 mWorld;',
 	'uniform mat4 mView;',
 	'uniform mat4 mProj;',
 	'',
 	'void main()',
 	'{',
-	' fragTexCoord=vertTexCoord;',
+	' fragColor=vertColor;',
 	' gl_Position =mProj * mView * mWorld * vec4(vertPosition,1.0);',
+	' gl_PointSize = 1.0;',
 	'}'
 
 ].join('\n');
@@ -27,11 +28,11 @@ var fragmentShaderText =
 	[
 	'precision mediump float;',
 	'',
-	'varying vec2 fragTexCoord;',
+	'varying vec3 fragColor;',
 	'uniform sampler2D sampler;',
 	'void main()',
 	'{',
-	' gl_FragColor = texture2D(sampler,fragTexCoord);',
+	' gl_FragColor = vec4(fragColor,1.0);',
 	'}'
 
 ].join('\n');
@@ -75,40 +76,7 @@ var fragmentShaderText =
 		1.0, -1.0, 1.0,
 		1.0, -1.0, -1.0,
 	];
-
-	var boxTexCoord =
-		//U, V
-		[0, 0,
-		0, 1,
-		1, 1,
-		1, 0,
-
-		0, 0,
-		1, 0,
-		1, 1,
-		0, 1,
-
-		1, 1,
-		0, 1,
-		0, 0,
-		1, 0,
-
-		1, 1,
-		1, 0,
-		0, 0,
-		0, 1,
-
-		0, 0,
-		0, 1,
-		1, 1,
-		1, 0,
-
-		1, 1,
-		1, 0,
-		0, 0,
-		0, 1,
-	]
-
+	
 	var boxIndices =
 		[
 		// Top
@@ -135,17 +103,41 @@ var fragmentShaderText =
 		21, 20, 22,
 		22, 20, 23
 	];
-var cullRadios = document.getElementsByName('cullFace');
+	var cullRadios = document.getElementsByName('cullFace');
+	var renderModeRadios = document.getElementsByName('renderMode');
+	var colorSliders = document.getElementsByName('colorBar');
 	guiInit = function(){
 		
 
 	for(i=0; i<cullRadios.length; i++) {
         cullRadios[i].addEventListener('change', changeCullFace, false);
     }
-		
-		
+		for(i=0; i<colorSliders.length; i++) {
+        colorSliders[i].addEventListener('change', setColors, false);
+    }
+		for(i=0; i<renderModeRadios.length; i++) {
+        renderModeRadios[i].addEventListener('change', setRenderMode, false);
+		}
 	}
 
+	
+
+var setRenderMode= function(evt){
+	if(renderModeRadios[0].checked){mode=gl.TRIANGLES;}
+	else if(renderModeRadios[1].checked){mode=gl.LINES;}
+	else if(renderModeRadios[2].checked){mode=gl.POINTS;}
+	
+}
+	
+	var setColors= function(evt){
+	VertexColor=[	colorSliders[0].valueAsNumber/100,
+					colorSliders[1].valueAsNumber/100,
+					colorSliders[2].valueAsNumber/100];
+		
+		gl.uniform3fv(fragmentColorLocation, VertexColor);
+		
+	}
+	
 var makeBuffers=function(){
 	
 	//create new buffer for indexes
@@ -162,55 +154,16 @@ var makeBuffers=function(){
 		3 * Float32Array.BYTES_PER_ELEMENT, //Size of an individual vertexShader
 		0 //Offset from begining of single vertex to this attribute
 	);
-
-	//create new buffer for coordinates
-	var texCoordBufferObj = gl.createBuffer();
-	gl.bindBuffer(gl.ARRAY_BUFFER, texCoordBufferObj);
-	gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(boxTexCoord), gl.STATIC_DRAW);
-	var texCoordAttribLocation = gl.getAttribLocation(program, 'vertTexCoord');
-
-	gl.vertexAttribPointer(
-		texCoordAttribLocation, //attribute Location
-		2, //number of elements per attribute
-		gl.FLOAT, //type
-		gl.FALSE,
-		2 * Float32Array.BYTES_PER_ELEMENT, //Size of an individual vertexShader
-		0 //Offset from begining of single vertex to this attribute
-	);
-	gl.enableVertexAttribArray(positionAttribLocation);
-	gl.enableVertexAttribArray(texCoordAttribLocation);
+gl.enableVertexAttribArray(positionAttribLocation);
 
 	var boxIndexBufferObj = gl.createBuffer();
 	gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, boxIndexBufferObj);
 	gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(boxIndices), gl.STATIC_DRAW);
 
-	
-
-	
-	
-	
-}
-var makeTexture=function(){
-	//Create Texture
-
-	boxTexture = gl.createTexture();
-	gl.bindTexture(gl.TEXTURE_2D, boxTexture);
-	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-	gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
-
-	gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE,
-		document.getElementById('xImage'));
-
-	gl.bindTexture(gl.TEXTURE_2D, null);
-	
-	
 }
 
-var replaceObject = function(vert,tex,ind){
+var replaceObject = function(vert,ind){
 		boxVert=vert;
-		boxTexCoord= tex;
 		boxIndices=ind;	
 		makeBuffers();
 	}
@@ -219,7 +172,7 @@ var replaceObject = function(vert,tex,ind){
 	//CameraVariables
 	var nearClipping;
 	var farClipping;
-	
+	var mode=gl.TRIANGLES;
 		document.getElementById('nearClipping').addEventListener('change', setNearClipping, false);
 	function setNearClipping(evt){
 		nearClipping=evt.target.valueAsNumber;
@@ -329,7 +282,6 @@ var InitDemo = function () {
 	}
 
 	 makeBuffers();
-	 makeTexture();
 	
 
 	//Set world,view, and projection
@@ -338,7 +290,7 @@ var InitDemo = function () {
 	 matViewUniformLocation = gl.getUniformLocation(program, 'mView');
 	 matProjUniformLocation = gl.getUniformLocation(program, 'mProj');
 
-
+	fragmentColorLocation = gl.getUniformLocation(program, 'vertColor');
 
 	mat4.identity(worldMatrix);
 	
@@ -366,7 +318,7 @@ var InitDemo = function () {
 	vec3.set(position,0,0,-8);
 	
 	mat4.lookAt(viewMatrix, position, [0, 0, 0],up);
-	
+	VertexColor=[1.0,1.0,1.0];
 	nearClipping=0.1;
 	farClipping= 10000.0;
 	mat4.perspective(ProjMatrix, glMatrix.toRadian(45), canvas.width / canvas.height, nearClipping, farClipping);
@@ -375,7 +327,7 @@ var InitDemo = function () {
 	gl.uniformMatrix4fv(matViewUniformLocation, gl.FALSE, viewMatrix);
 	gl.uniformMatrix4fv(matProjUniformLocation, gl.FALSE, ProjMatrix);
 
-	
+	gl.uniform3fv(fragmentColorLocation, VertexColor);
 	
 	var identityMatrix = new Float32Array(16);
 	mat4.identity(identityMatrix);
@@ -394,9 +346,9 @@ var InitDemo = function () {
 		gl.clearColor(0.1, 0.1, 0.1, 1.0);
 
 		gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-		gl.bindTexture(gl.TEXTURE_2D, boxTexture);
-		gl.activeTexture(gl.TEXTURE0);
-		gl.drawElements(gl.TRIANGLES, boxIndices.length, gl.UNSIGNED_SHORT, 0);
+		
+		
+		gl.drawElements(mode, boxIndices.length, gl.UNSIGNED_SHORT, 0);
 		requestAnimationFrame(loop);
 	};
 
@@ -416,7 +368,7 @@ var InitDemo = function () {
 	var matViewUniformLocation;
 	var matProjUniformLocation;
 	
-	
+	var fragmentColorLocation;
 	
 var resetCamera = function(){
 	verticalAngle=0;
@@ -453,20 +405,24 @@ document.addEventListener('keydown', function(event) {
 	var translate;
 	translate=vec3.create();
 	vec3.scale(translate,camRotation,moveSpeed);
-	
-	
+	var target;
+	target=vec3.create();
+	vec3.add(target,position,camRotation);
 	
     if(event.keyCode == 37) {//LeftKey
-       horizontalAngle+=lookSpeed;
-		
+       horizontalAngle+=lookSpeed*Math.cos(verticalAngle);
+		verticalAngle-=lookSpeed*Math.sin(verticalAngle);
     } if(event.keyCode == 38) {//UpKey
-      verticalAngle+=lookSpeed;
+      horizontalAngle+=lookSpeed*Math.sin(horizontalAngle);
+		verticalAngle+=lookSpeed*Math.cos(horizontalAngle);
     }
      if(event.keyCode == 39) {//RightKey
-       horizontalAngle-=lookSpeed;
+        horizontalAngle-=lookSpeed*Math.cos(verticalAngle);
+		verticalAngle+=lookSpeed*Math.sin(verticalAngle);
     }
 	 if(event.keyCode == 40) {//DownKey
-       verticalAngle-=lookSpeed;
+       horizontalAngle-=lookSpeed*Math.sin(horizontalAngle);
+		verticalAngle-=lookSpeed*Math.cos(horizontalAngle);
     }
 	 if(event.keyCode == 87) {//w
 	
@@ -486,7 +442,8 @@ document.addEventListener('keydown', function(event) {
 	vec3.add(position,position,right);
      // position+=moveSpeed*camRotation;
     }
-
+	//horizontalAngle=vec3.dot([1,0,0],camRotation);
+	//horizontalAngle=vec3.dot([1,0,0],camRotation);
 	vec3.set(right,
 		Math.sin(horizontalAngle - 3.14/2.0),
 		0,
@@ -498,9 +455,8 @@ document.addEventListener('keydown', function(event) {
 		Math.cos(verticalAngle) * Math.cos(horizontalAngle));
 
 	up=vec3.cross(up, right, camRotation);
-	var target;
-	target=vec3.create();
-	vec3.add(target,position,camRotation);
+	
+	
 	mat4.lookAt(viewMatrix, position,target, up);
 	
 	gl.uniformMatrix4fv(matViewUniformLocation, gl.FALSE, viewMatrix);

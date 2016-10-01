@@ -5,7 +5,6 @@ function handleFileSelect(evt) {
 
 	var reader = new FileReader();
 	var boxVert=[];
-	var	boxTexCoord=[];
 	var	boxIndices=[];
 	reader.onload = function (progressEvent) {
 
@@ -16,7 +15,6 @@ function handleFileSelect(evt) {
 				boxVert.push(pline[1]);
 				boxVert.push(pline[2]);
 				boxVert.push(pline[3]);
-				boxTexCoord.push(0.5,0.5);
 			}
 			else if(pline[0] == 'f'){
 				boxIndices.push(pline[1]-1);
@@ -24,7 +22,7 @@ function handleFileSelect(evt) {
 				boxIndices.push(pline[3]-1);
 			}
 		}
-		replaceObject(boxVert,boxTexCoord,boxIndices);
+		replaceObject(boxVert,boxIndices);
 	};
 	reader.readAsText(f);
 }

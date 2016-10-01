@@ -7,6 +7,8 @@
 	Your browser does not support HTML5
 		</canvas>
 		<br />
+		WASD:Translate --Arrows: Rotate --MouseWheel: Zoom
+		<br />
 		<input type="file" id="objfile" name="objfile" accept=".obj" />
 		<output id="list"/>
 		<br>
@@ -23,6 +25,18 @@
 		
 		<input type="radio" name="cullFace" value="cw"> CW
 		<input type="radio" name="cullFace" value="ccw"> CCW
+		<br>
+		
+		R:<input type="range" id ="red" name="colorBar" min="0.0" max="100">
+		<output id="red"/>
+		G:<input type="range" id ="green" name="colorBar" min="0.0" max="100">
+		<output id="green"/>
+		B:<input type="range" id ="blue" name="colorBar" min="0.0" max="100">
+		<output id="blue"/>
+		<br>
+		Triangles<input type="radio" name="renderMode" value="GL_TRIANGLES"> 
+		Lines<input type="radio" name="renderMode" value="GL_LINES"> 
+		Points<input type="radio" name="renderMode" value="GL_POINTS"> 
 		<br>
 		
 		<script src="obj-handler.js">
