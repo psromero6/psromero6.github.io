@@ -172,6 +172,7 @@ var replaceObject = function(vert,ind){
 	//CameraVariables
 	var nearClipping;
 	var farClipping;
+	var FOV;
 	var mode=gl.TRIANGLES;
 		document.getElementById('nearClipping').addEventListener('change', setNearClipping, false);
 	function setNearClipping(evt){
@@ -298,20 +299,20 @@ var InitDemo = function () {
 	var xrotation = new Float32Array(16);
 	var yrotation = new Float32Array(16);
 	camRotation=vec3.create;
-	verticalAngle=0;
-	horizontalAngle=0;
+	pitch=0;
+	yaw=0;
 	
 	right=vec3.create();
 	up=vec3.create();
 	vec3.set(right,
-		Math.sin(horizontalAngle - 3.14/2.0),
+		Math.sin(yaw - 3.14/2.0),
 		0,
-		Math.cos(horizontalAngle - 3.14/2.0));
+		Math.cos(yaw - 3.14/2.0));
 	
 	vec3.set(camRotation,
-		Math.cos(verticalAngle) * Math.sin(horizontalAngle),
-		Math.sin(verticalAngle),
-		Math.cos(verticalAngle) * Math.cos(horizontalAngle));
+		Math.cos(pitch) * Math.sin(yaw),
+		Math.sin(pitch),
+		Math.cos(pitch) * Math.cos(yaw));
 
 	up=vec3.cross(up, right, camRotation);
 	position=vec3.create();
@@ -320,8 +321,9 @@ var InitDemo = function () {
 	mat4.lookAt(viewMatrix, position, [0, 0, 0],up);
 	VertexColor=[1.0,1.0,1.0];
 	nearClipping=0.1;
-	farClipping= 10000.0;
-	mat4.perspective(ProjMatrix, glMatrix.toRadian(45), canvas.width / canvas.height, nearClipping, farClipping);
+	farClipping= 100.0;
+	FOV=45;
+	mat4.perspective(ProjMatrix, glMatrix.toRadian(FOV), canvas.width / canvas.height, nearClipping, farClipping);
 
 	gl.uniformMatrix4fv(matWorldUniformLocation, gl.FALSE, worldMatrix);
 	gl.uniformMatrix4fv(matViewUniformLocation, gl.FALSE, viewMatrix);
@@ -332,15 +334,16 @@ var InitDemo = function () {
 	var identityMatrix = new Float32Array(16);
 	mat4.identity(identityMatrix);
 	var angle = 0;
-	
+	doRotate=false;
 	
 	
 	var loop = function () {
-		//angle = performance.now() / 1000 / 6 * 2 * Math.PI;
+		if(doRotate){angle = performance.now() / 1000 / 6 * 2 * Math.PI;
 	
 		mat4.rotate(yrotation, identityMatrix, angle, [0, 1, 0]);
 		mat4.rotate(xrotation, identityMatrix, angle / 4, [1, 0, 0]);
 		mat4.mul(worldMatrix, yrotation, xrotation);
+		}
 		gl.uniformMatrix4fv(matWorldUniformLocation, gl.FALSE, worldMatrix);
 
 		gl.clearColor(0.1, 0.1, 0.1, 1.0);
@@ -360,7 +363,8 @@ var InitDemo = function () {
 	var worldMatrix = new Float32Array(16);
 	var viewMatrix = new Float32Array(16);
 	var ProjMatrix = new Float32Array(16);
-	var camRotation,verticalAngle,horizontalAngle;
+	var camRotation;
+	var pitch,yaw;
 	var right,up;
 	var position;
 	
@@ -371,29 +375,63 @@ var InitDemo = function () {
 	var fragmentColorLocation;
 	
 var resetCamera = function(){
-	verticalAngle=0;
-	horizontalAngle=0;
+	pitch=0;
+	yaw=0;
 
-	vec3.set(right,
-		Math.sin(horizontalAngle - 3.14/2.0),
+	vvec3.set(right,
+		Math.sin(yaw - 3.14/2.0),
 		0,
-		Math.cos(horizontalAngle - 3.14/2.0));
+		Math.cos(yaw - 3.14/2.0));
 	
 	vec3.set(camRotation,
-		Math.cos(verticalAngle) * Math.sin(horizontalAngle),
-		Math.sin(verticalAngle),
-		Math.cos(verticalAngle) * Math.cos(horizontalAngle));
+		Math.cos(pitch) * Math.sin(yaw),
+		Math.sin(pitch),
+		Math.cos(pitch) * Math.cos(yaw));
 
 	up=vec3.cross(up, right, camRotation);
 	position=vec3.create();
-	vec3.set(position,0,0,-8);
+	vec3.set(position,0,0,8);
 	
 	mat4.lookAt(viewMatrix, position, [0, 0, 0],up);
 	
 	gl.uniformMatrix4fv(matViewUniformLocation, gl.FALSE, viewMatrix);
 }
+	var doRotate;
 	
+	
+	var toggleObjectRotate=function(){
+		doRotate=!doRotate;
+		
+		
+	}	
+var FPSViewRH= function(eye,pitch,yaw )
+{
 
+    var cosPitch = Math.cos(pitch);
+    var sinPitch = Math.sin(pitch);
+    var cosYaw = Math.cos(yaw);
+    var sinYaw = Math.sin(yaw);
+ 
+ 
+
+    var xaxis = [ -cosYaw, 0, sinYaw ];
+    var yaxis = [ sinYaw * sinPitch, cosPitch, cosYaw * sinPitch ];
+    var zaxis = [ -sinYaw * cosPitch,sinPitch, -cosPitch * cosYaw ];
+ 
+  
+	var m14,m24,m34;
+	m14=vec3.dot( xaxis, eye );
+	m24=vec3.dot( yaxis, eye );
+	m34=vec3.dot( zaxis, eye );
+	
+    var view = [
+             xaxis[0],yaxis[0],zaxis[0], 0,
+             xaxis[1],yaxis[1],zaxis[1], 0,
+             xaxis[2],yaxis[2],zaxis[2], 0,
+             -m14	 ,	  -m24,	   -m34, 1
+			   ];
+    return view;
+}
 	
 	
 document.addEventListener('keydown', function(event) {
@@ -408,56 +446,62 @@ document.addEventListener('keydown', function(event) {
 	var target;
 	target=vec3.create();
 	vec3.add(target,position,camRotation);
-	
+	//RotateCamera
     if(event.keyCode == 37) {//LeftKey
-       horizontalAngle+=lookSpeed*Math.cos(verticalAngle);
-		verticalAngle-=lookSpeed*Math.sin(verticalAngle);
+      yaw+=lookSpeed;
     } if(event.keyCode == 38) {//UpKey
-      horizontalAngle+=lookSpeed*Math.sin(horizontalAngle);
-		verticalAngle+=lookSpeed*Math.cos(horizontalAngle);
+      pitch-=lookSpeed;
     }
      if(event.keyCode == 39) {//RightKey
-        horizontalAngle-=lookSpeed*Math.cos(verticalAngle);
-		verticalAngle+=lookSpeed*Math.sin(verticalAngle);
+       yaw-=lookSpeed;
     }
 	 if(event.keyCode == 40) {//DownKey
-       horizontalAngle-=lookSpeed*Math.sin(horizontalAngle);
-		verticalAngle-=lookSpeed*Math.cos(horizontalAngle);
+      pitch+=lookSpeed;
     }
-	 if(event.keyCode == 87) {//w
 	
+	//TranslateCamera
+	 if(event.keyCode == 87) {//w
 	vec3.add(position,position,translate);
-     // position+=moveSpeed*camRotation;
     } if(event.keyCode == 83) {//s
 	vec3.subtract(position,position,translate);
-     // position+=moveSpeed*camRotation;
     } if(event.keyCode == 65) {//a
 	vec3.add(right,right,translate);
 	vec3.scale(right,right,moveSpeed);
 	vec3.subtract(position,position,right);
-     // position+=moveSpeed*camRotation;
     } if(event.keyCode == 68) {//d
 	vec3.add(right,right,translate);
 	vec3.scale(right,right,moveSpeed);
 	vec3.add(position,position,right);
-     // position+=moveSpeed*camRotation;
     }
-	//horizontalAngle=vec3.dot([1,0,0],camRotation);
-	//horizontalAngle=vec3.dot([1,0,0],camRotation);
+	
+	//Alter FOV
+	if(event.keyCode==49){//1
+		FOV-=2;
+	mat4.perspective(ProjMatrix, glMatrix.toRadian(FOV), canvas.width / canvas.height, nearClipping, farClipping);
+
+	gl.uniformMatrix4fv(matProjUniformLocation, gl.FALSE, ProjMatrix);
+		
+	}
+	if(event.keyCode==50){//1
+		FOV+=2;
+	mat4.perspective(ProjMatrix, glMatrix.toRadian(FOV), canvas.width / canvas.height, nearClipping, farClipping);
+
+	gl.uniformMatrix4fv(matProjUniformLocation, gl.FALSE, ProjMatrix);
+		
+	}
 	vec3.set(right,
-		Math.sin(horizontalAngle - 3.14/2.0),
+		Math.sin(yaw - 3.14/2.0),
 		0,
-		Math.cos(horizontalAngle - 3.14/2.0));
+		Math.cos(yaw - 3.14/2.0));
 	
 	vec3.set(camRotation,
-		Math.cos(verticalAngle) * Math.sin(horizontalAngle),
-		Math.sin(verticalAngle),
-		Math.cos(verticalAngle) * Math.cos(horizontalAngle));
+		Math.cos(pitch) * Math.sin(yaw),
+		Math.sin(pitch),
+		Math.cos(pitch) * Math.cos(yaw));
 
 	up=vec3.cross(up, right, camRotation);
 	
-	
-	mat4.lookAt(viewMatrix, position,target, up);
+	viewMatrix=FPSViewRH(position,pitch,yaw);
 	
 	gl.uniformMatrix4fv(matViewUniformLocation, gl.FALSE, viewMatrix);
 });
