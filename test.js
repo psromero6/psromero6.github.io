@@ -477,18 +477,18 @@ document.addEventListener('keydown', function(event) {
 	
 	//Alter FOV
 	if(event.keyCode==49){//1
+	if(FOV>2){
 		FOV-=2;
-	mat4.perspective(ProjMatrix, glMatrix.toRadian(FOV), canvas.width / canvas.height, nearClipping, farClipping);
-
-	gl.uniformMatrix4fv(matProjUniformLocation, gl.FALSE, ProjMatrix);
-		
+		mat4.perspective(ProjMatrix, glMatrix.toRadian(FOV), canvas.width / canvas.height, nearClipping, farClipping);
+		gl.uniformMatrix4fv(matProjUniformLocation, gl.FALSE, ProjMatrix);
+		}	
 	}
 	if(event.keyCode==50){//1
+		if(FOV<178){
 		FOV+=2;
-	mat4.perspective(ProjMatrix, glMatrix.toRadian(FOV), canvas.width / canvas.height, nearClipping, farClipping);
-
-	gl.uniformMatrix4fv(matProjUniformLocation, gl.FALSE, ProjMatrix);
-		
+		mat4.perspective(ProjMatrix, glMatrix.toRadian(FOV), canvas.width / canvas.height, nearClipping, farClipping);
+		gl.uniformMatrix4fv(matProjUniformLocation, gl.FALSE, ProjMatrix);
+		}
 	}
 	vec3.set(right,
 		Math.sin(yaw - 3.14/2.0),
