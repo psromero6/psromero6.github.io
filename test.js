@@ -177,7 +177,7 @@ var replaceObject = function(vert,ind){
 		document.getElementById('nearClipping').addEventListener('change', setNearClipping, false);
 	function setNearClipping(evt){
 		nearClipping=evt.target.valueAsNumber;
-		mat4.perspective(ProjMatrix, glMatrix.toRadian(45), canvas.width / canvas.height,nearClipping, farClipping);
+		mat4.perspective(ProjMatrix, glMatrix.toRadian(FOV), canvas.width / canvas.height,nearClipping, farClipping);
 		
 	gl.uniformMatrix4fv(matProjUniformLocation, gl.FALSE, ProjMatrix);
 		
@@ -185,7 +185,7 @@ var replaceObject = function(vert,ind){
 		document.getElementById('farClipping').addEventListener('change', setFarClipping, false);
 	function setFarClipping(evt){
 		farClipping= evt.target.valueAsNumber;
-		mat4.perspective(ProjMatrix, glMatrix.toRadian(45), canvas.width / canvas.height,nearClipping,farClipping);
+		mat4.perspective(ProjMatrix, glMatrix.toRadian(FOV), canvas.width / canvas.height,nearClipping,farClipping);
 		
 	gl.uniformMatrix4fv(matProjUniformLocation, gl.FALSE, ProjMatrix);
 		
@@ -378,23 +378,24 @@ var resetCamera = function(){
 	pitch=0;
 	yaw=0;
 
-	vvec3.set(right,
+	vec3.set(right,
 		Math.sin(yaw - 3.14/2.0),
 		0,
 		Math.cos(yaw - 3.14/2.0));
 	
 	vec3.set(camRotation,
-		Math.cos(pitch) * Math.sin(yaw),
+		Math.cos(pitch) * Math.sin(yaw), 
 		Math.sin(pitch),
 		Math.cos(pitch) * Math.cos(yaw));
 
 	up=vec3.cross(up, right, camRotation);
-	position=vec3.create();
-	vec3.set(position,0,0,8);
+	vec3.set(position,0,0,-8);
 	
-	mat4.lookAt(viewMatrix, position, [0, 0, 0],up);
-	
+	viewMatrix=FPSViewRH(position,pitch,yaw);
+	FOV=45;
+	mat4.perspective(ProjMatrix, glMatrix.toRadian(FOV), canvas.width / canvas.height, nearClipping, farClipping);
 	gl.uniformMatrix4fv(matViewUniformLocation, gl.FALSE, viewMatrix);
+	gl.uniformMatrix4fv(matProjUniformLocation, gl.FALSE, ProjMatrix);
 }
 	var doRotate;
 	
