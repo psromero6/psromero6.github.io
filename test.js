@@ -358,7 +358,7 @@ var resetCamera = function(){
 
 
     position = vec3.create();
-    vec3.set(position, 0, 0, 8);
+    vec3.set(position, 0, 0, 10);
 
     viewMatrix = buildView(position, u, v, w);
     VertexColor = [1.0, 1.0, 1.0];
@@ -391,7 +391,7 @@ var buildView= function(eye,u,v,w )
              u[0],v[0],w[0], 0,
              u[1],v[1],w[1], 0,
              u[2],v[2],w[2], 0,
-             -m14	 ,	  -m24,	   -m34, 1
+             -m14,-m24,-m34, 1
 			   ];
     return view;
 }
@@ -399,56 +399,59 @@ var rotateAxes = function (axis, angle) {
     var rotationMatrix;
     rotationMatrix = mat4.create();
     mat4.fromRotation(rotationMatrix, angle, axis);
-    var cameraAxis = [u[0], v[0], w[0], 0.0,
-                      u[1], v[1], w[1], 0.0,
-                      u[2], v[2], w[2], 0.0,
-                      0.0 , 0.0 , 0.0 , 1.0];
-
-
-
+    var ca = [u[0], v[0], w[0], 0.0,
+              u[1], v[1], w[1], 0.0,
+              u[2], v[2], w[2], 0.0,
+              0.0 , 0.0 , 0.0 , 1.0];
+    mat4.multiply(ca,ca, rotationMatrix);
+    vec3.set(u,ca[0], ca[4], ca[8]);
+    vec3.set(v,ca[1], ca[5], ca[9]);
+    vec3.set(w,ca[2], ca[6], ca[10]);
 }
 	
 document.addEventListener('keydown', function(event) {
-	var lookSpeed= 0.01;
-	var moveSpeed= 0.1;
-	var identityMatrix = new Float32Array(16);
-	var translation = vec3.create();
-	mat4.identity(identityMatrix);
-	var translate;
-	translate=vec3.create();
-	//RotateCamera
+	
+	
+    //RotateCamera
+    var lookSpeed = 0.01;
+
     if(event.keyCode == 37) {//LeftKey
-        vec3.rotate(u, lookSpeed, v);
-        vec3.rotate(w, lookSpeed, v);
+        rotateAxes(v, -lookSpeed);
     } if(event.keyCode == 38) {//UpKey
-        vec3.rotate(v, lookSpeed, u);
-        vec3.rotate(w, lookSpeed, u);
+        rotateAxes(u, -lookSpeed);;
     }
      if(event.keyCode == 39) {//RightKey
-         vec3.rotate(u, -lookSpeed, v);
-         vec3.rotate(w, -lookSpeed, v);
+         rotateAxes(v, lookSpeed);
     }
 	 if(event.keyCode == 40) {//DownKey
-	     vec3.rotate(v, -lookSpeed, u);
-	     vec3.rotate(w, -lookSpeed, u);
+	     rotateAxes(u, lookSpeed);
     }
 	
-	/*/TranslateCamera
-	 if(event.keyCode == 87) {//w
-	vec3.add(position,position,translate);
-    } if(event.keyCode == 83) {//s
-	vec3.subtract(position,position,translate);
-    } if(event.keyCode == 65) {//a
-	vec3.add(right,right,translate);
-	vec3.scale(right,right,moveSpeed);
-	vec3.subtract(position,position,right);
-    } if(event.keyCode == 68) {//d
-	vec3.add(right,right,translate);
-	vec3.scale(right,right,moveSpeed);
-	vec3.add(position,position,right);
+    //TranslateCamera
+
+	 var moveSpeed = 1;
+	 var translate;
+	 translate = vec3.create();
+
+
+	 if (event.keyCode == 87) {//w
+	     vec3.scale(translate, w, -moveSpeed);
+	 } if (event.keyCode == 83) {//s
+	     vec3.scale(translate, w, moveSpeed);
+	 } if (event.keyCode == 65) {//a
+	     vec3.scale(translate, u, -moveSpeed);
+	 } if (event.keyCode == 68) {//d
+	     vec3.scale(translate, u, moveSpeed);
     }
-	
-	/*///Alter FOV
+
+    vec3.add(position, position, translate);
+
+    //build view Matrix
+    viewMatrix = buildView(position, u, v, w);
+    gl.uniformMatrix4fv(matViewUniformLocation, gl.FALSE, viewMatrix);
+
+
+    //Alter FOV
 	if(event.keyCode==49){//1
 	if(FOV>2){
 		FOV-=2;
@@ -456,26 +459,12 @@ document.addEventListener('keydown', function(event) {
 		gl.uniformMatrix4fv(matProjUniformLocation, gl.FALSE, ProjMatrix);
 		}	
 	}
-	if(event.keyCode==50){//1
+	if(event.keyCode==50){//2
 		if(FOV<178){
 		FOV+=2;
 		mat4.perspective(ProjMatrix, glMatrix.toRadian(FOV), canvas.width / canvas.height, nearClipping, farClipping);
 		gl.uniformMatrix4fv(matProjUniformLocation, gl.FALSE, ProjMatrix);
 		}
 	}
-	/*vec3.set(right,
-		Math.sin(yaw - 3.14/2.0),
-		0,
-		Math.cos(yaw - 3.14/2.0));
-	
-	vec3.set(camRotation,
-		Math.cos(pitch) * Math.sin(yaw),
-		Math.sin(pitch),
-		Math.cos(pitch) * Math.cos(yaw));
-
-	up=vec3.cross(up, right, camRotation);
-	
-	viewMatrix=FPSViewRH(position,pitch,yaw);
-	*/
-	gl.uniformMatrix4fv(matViewUniformLocation, gl.FALSE, viewMatrix);
+    
 });
