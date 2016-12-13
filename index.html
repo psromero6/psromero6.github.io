@@ -1,0 +1,67 @@
+<html>
+	<head>
+		<title>WebGL - Simple triangle</title>
+	</head>
+	<body onload="InitDemo();InitDemo1();">
+	<p align="Left">
+		<canvas id="game-surface-original" width ="800" height="600">
+	Your browser does not support HTML5
+		</canvas>
+            
+		</p>
+                <p align="Right">
+		<canvas id="game-surface-new" width ="800" height="600">
+	Your browser does not support HTML5
+		</canvas>
+            
+		</p>
+		<br />
+		WASD=Translate  Arrows=Rotate 1=zoomIn 2=zoomOut
+		<br />
+		<hr>
+		Render .obj file<input type="file" id="objfile" name="objfile" accept=".obj" />
+		<output id="list"/>
+		<br>
+		<hr>
+		
+		NearClipping:<input type="range" id ="nearClipping" name="nearClipping" min="0.1" max="20" value="0.1">
+		<output id="nearClipping"/>
+		FarClipping:<input type="range" id ="farClipping" name="farClipping" min="20" max="100" value="100">
+		<output id="farClipping"/>
+		<br>
+		<hr>
+		<input type="button" value="ReturnHome" onclick="resetCamera()">
+		<br>
+		<hr>
+		<input type="radio" name="cullFace" value="cw" checked> CW
+		<input type="radio" name="cullFace" value="ccw"> CCW
+		<br>
+		<hr>
+		R:<input type="range" id ="red" name="colorBar" min="0.0" max="100" value="100">
+		<output id="red"/>
+		G:<input type="range" id ="green" name="colorBar" min="0.0" max="100" value="100">
+		<output id="green"/>
+		B:<input type="range" id ="blue" name="colorBar" min="0.0" max="100" value="100">
+		<output id="blue"/>
+		<br>
+		<hr>
+		Triangles<input type="radio" name="renderMode" value="GL_TRIANGLES" checked> 
+		Lines<input type="radio" name="renderMode" value="GL_LINES"> 
+		Points<input type="radio" name="renderMode" value="GL_POINTS"> 
+		<br>
+		
+		<input type="button" value="ToggleObjectRoate" onclick="toggleObjectRotate()">
+		<br>
+                <script src="Utilities.js">
+		</script>
+		<script src="obj-handler.js">
+		</script>
+                <script src="Assignment1Render.js">
+		</script>
+                <script src="Assignment2Render.js">
+		</script>
+		
+		<script src="gl-matrix.js">
+		</script>
+	</body>
+</html>

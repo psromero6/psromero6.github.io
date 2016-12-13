@@ -1,0 +1,14 @@
+precision mediump float;,
+
+attribute vec3 vertPosition;
+uniform vec3 vertColor;
+varying vec3 fragColor;
+uniform mat4 mWorld;
+uniform mat4 mView;
+
+void main()
+{
+ fragColor=vertColor;
+ gl_Position =mProj * mView * mWorld * vec4(vertPosition,1.0);
+ gl_PointSize = 1.0;
+}
