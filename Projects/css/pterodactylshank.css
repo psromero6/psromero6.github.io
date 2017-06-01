@@ -1,1 +1,70 @@
-.version.pterodactylshank{color:#000005;background-color:#F5C551;}#muse_css_mq{background-color:#FFFFFF;}#page{z-index:1;min-height:1268px;background-image:none;border-width:0px;border-color:#000000;background-color:transparent;padding-bottom:62px;width:100%;max-width:1200px;margin-left:auto;margin-right:auto;}#page::before{content:"";position:absolute;pointer-events:none;box-shadow:none;top:0px;bottom:0px;margin-left:auto;margin-right:auto;left:0px;right:0px;width:100%;max-width:1200px;}#u315{z-index:2;height:1287px;background-color:#F0FFFD;opacity:0.5;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)";filter:alpha(opacity=50);position:relative;margin-right:-10000px;width:100%;}#u318-4{z-index:3;display:block;vertical-align:top;position:relative;margin-right:-10000px;margin-top:16px;width:26.75%;left:36.59%;}#u321-4{z-index:7;position:relative;margin-right:-10000px;margin-top:594px;width:19.59%;left:40.17%;}#u324-4{z-index:11;position:relative;margin-right:-10000px;margin-top:162px;width:19.59%;left:40.17%;}#u321-4_img,#u324-4_img{display:block;vertical-align:top;width:100%;}.css_verticalspacer .verticalspacer{height:calc(100vh - 1349px);}.html{background:#2C3377 url("../images/pterodactylshankplay.gif?crc=348601805") no-repeat center top scroll;}body{position:relative;min-width:320px;}
+body {
+  height: 100%;
+  background: none rgb(30, 35, 108);
+  background-repeat: no-repeat;
+  background-size: 50% auto;
+  background-position: center center;
+  font: 400 1em/1.38 Oswald;
+  color: rgb(255, 255, 255);
+}
+
+.element {
+  position: relative;
+  float: left;
+  z-index: 4;
+  width: 21.1666666666%;
+  height: 387px;
+  margin: -105px 0 0 39.4166666666%;
+  background: url('../images/PterodactylShank.gif') rgb(30, 35, 108);
+  background-repeat: no-repeat;
+  background-size: 252.5px 389px;
+  background-position: center center;
+}
+
+.text {
+  position: relative;
+  float: left;
+}
+
+._button {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+  border-radius: 3px;
+  background-color: rgb(222, 222, 222);
+  font-size: 1em;
+  text-align: center;
+  color: rgb(0, 0, 0);
+}
+
+.text-1 {
+  z-index: 1;
+  width: 27.25%;
+  min-height: 168px;
+  margin: 124px 0 0 36.375%;
+  font-size: 1em;
+  color: rgb(255, 255, 255);
+}
+
+.text-2 {
+  clear: both;
+  z-index: 0;
+  width: 27.19921875%;
+  min-height: 104px;
+  margin: -258px 0 0 36.39974%;
+  font-size: 2em;
+  text-align: center;
+  color: rgb(250, 242, 242);
+}
+
+._button-1 {
+  width: 13.5989583333%;
+  height: 46px;
+  margin-top: 608px;
+}
+
+._button-2 {
+  width: 7.4166666666%;
+  height: 24px;
+  margin-top: 40px;
+}

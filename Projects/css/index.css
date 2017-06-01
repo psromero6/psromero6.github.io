@@ -1,1 +1,52 @@
-.version.index{color:#000011;background-color:#7040B9;}#page{z-index:1;min-height:650px;background-image:none;border-width:0px;border-color:#000000;background-color:#000000;padding-bottom:62px;width:100%;max-width:1200px;margin-left:auto;margin-right:auto;}#u118-5{z-index:2;display:block;vertical-align:top;position:relative;margin-right:-10000px;margin-top:85px;width:59.34%;left:28.01%;}#u122{z-index:7;background-color:transparent;padding-bottom:178px;position:relative;margin-right:-10000px;margin-top:57px;width:73.34%;left:21.42%;}#u255{z-index:8;background-color:transparent;position:relative;margin-right:-10000px;margin-top:179px;width:20.23%;left:8.98%;}#u255_img{width:100%;}.css_verticalspacer .verticalspacer{height:calc(100vh - 874px);}#muse_css_mq,.html{background-color:#FFFFFF;}body{position:relative;min-width:320px;padding-bottom:163px;}
+body {
+  background-color: rgb(0, 0, 0);
+  font: 400 1em/1.38 Oswald;
+  color: rgb(0, 0, 0);
+}
+
+.text {
+  width: 34.6666666666%;
+  min-height: 60px;
+  margin: 27px auto 0;
+  font-size: 2em;
+  text-align: center;
+  color: rgb(255, 255, 255);
+}
+
+._button {
+  display: block;
+  position: relative;
+  float: left;
+  height: 81px;
+  margin-top: 103px;
+  border-radius: 3px;
+  background-color: rgb(222, 222, 222);
+  font-size: 1em;
+  text-align: center;
+  color: rgb(0, 0, 0);
+}
+
+._button-1 {
+  clear: both;
+  z-index: 1;
+  width: 7.6%;
+  margin-left: 28.79948%;
+}
+
+._button-2 {
+  z-index: 2;
+  width: 7.6%;
+  margin-left: 2.76172%;
+}
+
+._button-3 {
+  z-index: 3;
+  width: 7.5989583333%;
+  margin-left: 4.05469%;
+}
+
+._button-4 {
+  z-index: 4;
+  width: 7.5989583333%;
+  margin-left: 4.46875%;
+}
