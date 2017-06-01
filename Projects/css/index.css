@@ -15,8 +15,8 @@ body {
 
 ._button {
   display: block;
-  position: relative;
   float: left;
+  width: 8.4166666666%;
   height: 81px;
   margin-top: 103px;
   border-radius: 3px;
@@ -27,26 +27,24 @@ body {
 }
 
 ._button-1 {
+  position: relative;
   clear: both;
   z-index: 1;
-  width: 7.6%;
-  margin-left: 28.79948%;
+  margin-left: 28.83073%;
 }
 
 ._button-2 {
+  position: relative;
   z-index: 2;
-  width: 7.6%;
-  margin-left: 2.76172%;
+  margin-left: 5.16797%;
 }
 
 ._button-3 {
+  position: relative;
   z-index: 3;
-  width: 7.5989583333%;
-  margin-left: 4.05469%;
+  margin-left: 5.16797%;
 }
 
 ._button-4 {
-  z-index: 4;
-  width: 7.5989583333%;
-  margin-left: 4.46875%;
+  margin-left: 5.16667%;
 }

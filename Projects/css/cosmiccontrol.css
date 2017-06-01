@@ -4,12 +4,31 @@ body {
   color: rgb(255, 255, 255);
 }
 
+.container {
+  float: left;
+  clear: both;
+  width: 56%;
+  height: 161px;
+  margin: 317px 0 0 22.8%;
+}
+
+.container .text {
+  position: relative;
+  float: left;
+  z-index: 1;
+  width: 94.1964285714%;
+  min-height: 231px;
+  margin: -177px 0 0 2.8250558035%;
+  font-size: 1em;
+}
+
 .text {
   color: rgb(255, 255, 255);
 }
 
 ._button {
   display: block;
+  position: relative;
   border-radius: 3px;
   background-color: rgb(222, 222, 222);
   font-size: 1em;
@@ -25,38 +44,28 @@ body {
   text-align: center;
 }
 
-.text-2 {
-  position: relative;
+.container ._button-1 {
   float: left;
   clear: both;
-  z-index: 0;
-  width: 54.41796875%;
-  min-height: 231px;
-  margin: 125px 0 0 22%;
-  font-size: 1em;
-}
-
-._button-1 {
-  position: relative;
-  float: left;
-  clear: both;
-  z-index: 1;
-  width: 9.4166666666%;
-  height: 36px;
-  margin: -19px 0 0 22.79948%;
-}
-
-._button-2 {
-  position: relative;
-  float: right;
   z-index: 2;
-  width: 11.3372395833%;
+  width: 15.3865792944%;
   height: 36px;
-  margin: -8px 17.46276% 0 0;
+  margin: -147px 0 0 41.7248%;
 }
 
-._button-3 {
-  width: 11.3828125%;
+.container ._button-2 {
+  float: right;
+  z-index: 3;
+  width: 15.9226190476%;
+  height: 36px;
+  margin: -98px 42.88737% 0 0;
+}
+
+.container ._button-3 {
+  float: left;
+  clear: both;
+  z-index: 4;
+  width: 10.863095238%;
   height: 27px;
-  margin: 426px auto 0;
+  margin: -48px 0 0 44.56845%;
 }
