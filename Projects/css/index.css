@@ -1,14 +1,22 @@
 body {
   background-color: rgb(0, 0, 0);
   font: 400 1em/1.38 Oswald;
-  color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+}
+
+.container {
+  position: relative;
+  float: left;
+  margin-top: 91px;
+}
+
+.container .text {
+  float: left;
+  clear: both;
+  font-size: 1em;
 }
 
 .text {
-  width: 34.6666666666%;
-  min-height: 60px;
-  margin: 27px auto 0;
-  font-size: 2em;
   text-align: center;
   color: rgb(255, 255, 255);
 }
@@ -16,35 +24,87 @@ body {
 ._button {
   display: block;
   float: left;
-  width: 8.4166666666%;
-  height: 81px;
-  margin-top: 103px;
-  border-radius: 3px;
-  background-color: rgb(222, 222, 222);
   font-size: 1em;
   text-align: center;
-  color: rgb(0, 0, 0);
+}
+
+.container ._button {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: rgba(222, 222, 222, 0);
+}
+
+.container-1 {
+  z-index: 5;
+  width: 9.3333333333%;
+  height: 122px;
+  margin-left: 5.16927%;
+}
+
+.container-2 {
+  z-index: 8;
+  width: 10.75%;
+  height: 115px;
+  margin-left: 1.9140625%;
+}
+
+.text-1 {
+  width: 34.6666666666%;
+  min-height: 60px;
+  margin: 27px auto 0;
+  font-size: 2em;
+}
+
+.text-2 {
+  width: 100%;
+  min-height: 41px;
+}
+
+.text-3 {
+  width: 94.5736434108%;
+  min-height: 29px;
+  margin-left: 0.18169%;
 }
 
 ._button-1 {
   position: relative;
   clear: both;
   z-index: 1;
-  margin-left: 28.83073%;
-}
-
-._button-2 {
-  position: relative;
-  z-index: 2;
-  margin-left: 5.16797%;
-}
-
-._button-3 {
-  position: relative;
-  z-index: 3;
-  margin-left: 5.16797%;
+  width: 8.4166666666%;
+  height: 81px;
+  margin: 103px 0 0 28.83073%;
+  border-radius: 3px;
+  background-color: rgb(222, 222, 222);
+  color: rgb(0, 0, 0);
 }
 
 ._button-4 {
-  margin-left: 5.16667%;
+  width: 8.4166666666%;
+  height: 81px;
+  margin: 103px 0 0 5.14974%;
+  border-radius: 3px;
+  background-color: rgb(222, 222, 222);
+  color: rgb(0, 0, 0);
+}
+
+.container ._button-2 {
+  width: 100%;
+  height: 100px;
+  background-image: url('../images/CCIcon.png');
+  background-size: contain;
+  color: rgb(255, 255, 255);
+}
+
+.container ._button-2:hover {
+  background-color: rgba(252, 247, 247, 0);
+}
+
+.container ._button-3 {
+  width: 94.5736434108%;
+  height: 93px;
+  border: 1px solid rgb(138, 138, 138);
+  border-radius: 5px;
+  background-image: url('../images/PtIcon.png');
+  background-size: auto auto;
+  color: rgb(0, 0, 0);
 }

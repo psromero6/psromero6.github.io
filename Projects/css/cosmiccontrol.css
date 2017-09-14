@@ -1,6 +1,10 @@
 body {
-  background-color: rgb(0, 0, 0);
-  font: 400 1em/1.38 Oswald;
+  height: 100%;
+  background: url('../images/CCBackDrop.png') rgb(0, 0, 0);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
+  font: 400 1.125em/1.38 Oswald;
   color: rgb(255, 255, 255);
 }
 
@@ -9,17 +13,18 @@ body {
   clear: both;
   width: 56%;
   height: 161px;
-  margin: 317px 0 0 22.8%;
+  margin: 317px 0 0 22.7994791666%;
 }
 
 .container .text {
-  position: relative;
   float: left;
-  z-index: 1;
-  width: 94.1964285714%;
-  min-height: 231px;
-  margin: -177px 0 0 2.8250558035%;
+  width: 91.9642857142%;
+  height: 111px;
+  min-height: 50px;
+  margin: -235px 0 0 2.5902157738%;
+  background-color: rgba(0, 0, 0, 0.59);
   font-size: 1em;
+  text-align: justify;
 }
 
 .text {
@@ -31,7 +36,7 @@ body {
   position: relative;
   border-radius: 3px;
   background-color: rgb(222, 222, 222);
-  font-size: 1em;
+  font-size: 0.889em;
   text-align: center;
   color: rgb(0, 0, 0);
 }
@@ -40,17 +45,16 @@ body {
   width: 34.6666666666%;
   min-height: 60px;
   margin: 0 auto;
-  font-size: 2em;
+  font-size: 1.778em;
   text-align: center;
 }
 
 .container ._button-1 {
   float: left;
-  clear: both;
   z-index: 2;
   width: 15.3865792944%;
   height: 36px;
-  margin: -147px 0 0 41.7248%;
+  margin: -308px 0 0 2.59022%;
 }
 
 .container ._button-2 {
@@ -58,7 +62,7 @@ body {
   z-index: 3;
   width: 15.9226190476%;
   height: 36px;
-  margin: -98px 42.88737% 0 0;
+  margin: -313px 43.42448% 0 0;
 }
 
 .container ._button-3 {
@@ -67,5 +71,5 @@ body {
   z-index: 4;
   width: 10.863095238%;
   height: 27px;
-  margin: -48px 0 0 44.56845%;
+  margin: -299px 0 0 85.00047%;
 }
