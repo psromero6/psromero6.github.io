@@ -1,9 +1,5 @@
 body {
-  height: 100%;
-  background: none rgb(30, 35, 108);
-  background-repeat: no-repeat;
-  background-size: 50% auto;
-  background-position: center center;
+  background-color: rgb(30, 35, 108);
   font: 400 1em/1.38 Oswald;
   color: rgb(255, 255, 255);
 }
@@ -11,13 +7,14 @@ body {
 .element {
   position: relative;
   float: left;
+  clear: both;
   z-index: 4;
-  width: 21.1666666666%;
-  height: 387px;
-  margin: -105px 0 0 39.41667%;
-  background: url('../images/PterodactylShank.gif') rgb(30, 35, 108);
+  width: 27.1666666666%;
+  height: 407px;
+  margin: 63px 0 0 36.39974%;
+  background: url('../images/PTScreenshot.png') rgb(30, 35, 108);
   background-repeat: no-repeat;
-  background-size: 252.5px 389px;
+  background-size: contain;
   background-position: center center;
 }
 
@@ -31,40 +28,44 @@ body {
   margin-right: auto;
   margin-left: auto;
   border-radius: 3px;
-  background-color: rgb(222, 222, 222);
   font-size: 1em;
   text-align: center;
   color: rgb(0, 0, 0);
 }
 
 .text-1 {
-  z-index: 1;
-  width: 27.25%;
-  min-height: 168px;
-  margin: 124px 0 0 36.375%;
-  font-size: 1em;
-  color: rgb(255, 255, 255);
-}
-
-.text-2 {
-  clear: both;
   z-index: 0;
   width: 27.19921875%;
   min-height: 104px;
-  margin: -258px 0 0 36.39974%;
+  margin: 34px 0 0 36.39974%;
   font-size: 2em;
   text-align: center;
   color: rgb(250, 242, 242);
 }
 
+.text-2 {
+  clear: both;
+  z-index: 1;
+  width: 27.25%;
+  min-height: 168px;
+  margin: -525px 0 0 37.1992199999%;
+  font-size: 1em;
+  color: rgb(255, 255, 255);
+}
+
 ._button-1 {
   width: 13.5989583333%;
   height: 46px;
-  margin-top: 608px;
+  margin-top: 625px;
+  background: url('../images/GooglePlayIcon.png') rgba(222, 222, 222, 0);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
 }
 
 ._button-2 {
   width: 7.4166666666%;
   height: 24px;
-  margin-top: 40px;
+  margin-top: 23px;
+  background-color: rgb(222, 222, 222);
 }

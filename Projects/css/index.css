@@ -1,51 +1,44 @@
 body {
   background-color: rgb(0, 0, 0);
   font: 400 1em/1.38 Oswald;
-  color: rgb(255, 255, 255);
+  color: rgb(255, 249, 249);
 }
 
 .container {
   position: relative;
   float: left;
-  margin-top: 91px;
+  clear: both;
+  z-index: 6;
+  width: 20.4005208333%;
+  height: 224px;
+  margin: 43px 0 0 39.46615%;
 }
 
 .container .text {
   float: left;
-  clear: both;
+  width: 100.0829769579%;
+  min-height: 224px;
+  margin: -1px 0 0 -0.08298%;
   font-size: 1em;
-}
-
-.text {
   text-align: center;
   color: rgb(255, 255, 255);
 }
 
+.text-2 p {
+  margin-bottom: 1em;
+}
+
 ._button {
   display: block;
+  position: relative;
   float: left;
+  border-radius: 3px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
   font-size: 1em;
   text-align: center;
-}
-
-.container ._button {
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-color: rgba(222, 222, 222, 0);
-}
-
-.container-1 {
-  z-index: 5;
-  width: 9.3333333333%;
-  height: 122px;
-  margin-left: 5.16927%;
-}
-
-.container-2 {
-  z-index: 8;
-  width: 10.75%;
-  height: 115px;
-  margin-left: 1.9140625%;
+  color: rgb(0, 0, 0);
 }
 
 .text-1 {
@@ -53,58 +46,71 @@ body {
   min-height: 60px;
   margin: 27px auto 0;
   font-size: 2em;
-}
-
-.text-2 {
-  width: 100%;
-  min-height: 41px;
-}
-
-.text-3 {
-  width: 94.5736434108%;
-  min-height: 29px;
-  margin-left: 0.18169%;
-}
-
-._button-1 {
-  position: relative;
-  clear: both;
-  z-index: 1;
-  width: 8.4166666666%;
-  height: 81px;
-  margin: 103px 0 0 28.83073%;
-  border-radius: 3px;
-  background-color: rgb(222, 222, 222);
-  color: rgb(0, 0, 0);
-}
-
-._button-4 {
-  width: 8.4166666666%;
-  height: 81px;
-  margin: 103px 0 0 5.14974%;
-  border-radius: 3px;
-  background-color: rgb(222, 222, 222);
-  color: rgb(0, 0, 0);
-}
-
-.container ._button-2 {
-  width: 100%;
-  height: 100px;
-  background-image: url('../images/CCIcon.png');
-  background-size: contain;
+  text-align: center;
   color: rgb(255, 255, 255);
 }
 
-.container ._button-2:hover {
-  background-color: rgba(252, 247, 247, 0);
+.text-2 {
+  float: left;
+  clear: both;
+  width: 54.4%;
+  min-height: 220px;
+  margin-left: 22.79948%;
+  font-size: 1em;
+  color: rgb(255, 249, 249);
 }
 
-.container ._button-3 {
-  width: 94.5736434108%;
-  height: 93px;
-  border: 1px solid rgb(138, 138, 138);
-  border-radius: 5px;
-  background-image: url('../images/PtIcon.png');
-  background-size: auto auto;
-  color: rgb(0, 0, 0);
+.text-3 {
+  width: 34.6666666666%;
+  min-height: 60px;
+  margin: 225px auto 0;
+  font-size: 2em;
+  text-align: center;
+  color: rgb(255, 255, 255);
+}
+
+._button-1 {
+  clear: both;
+  z-index: 1;
+  width: 9.75%;
+  height: 109px;
+  margin-left: 35.58203125%;
+  background-image: url('../images/CCIcon.png');
+}
+
+._button-2 {
+  z-index: 2;
+  width: 9.8333333333%;
+  height: 109px;
+  margin-left: 7.6614583333%;
+  background-image: url('../images/PterodactylIcon.png');
+  background-color: rgba(222, 222, 222, 0);
+}
+
+._button-3 {
+  clear: both;
+  z-index: 7;
+  width: 3.8333333333%;
+  height: 46px;
+  margin: -168px 0 0 48.07943%;
+  background-image: url('../images/LinkedIn_logo_initials.png');
+  background-color: rgba(222, 222, 222, 0);
+}
+
+._button-4 {
+  z-index: 8;
+  width: 13.5984375%;
+  height: 34px;
+  margin: -107px 0 0 43.1992199999%;
+  background-image: url('../images/AngelListIcon.png');
+  background-color: rgba(222, 222, 222, 0);
+}
+
+._button-5 {
+  z-index: 9;
+  width: 13.6%;
+  height: 35px;
+  margin: -55px 0 0 43.1992199999%;
+  background-image: url('../images/upwork_logo_detail.png');
+  background-color: rgba(222, 222, 222, 0);
 }

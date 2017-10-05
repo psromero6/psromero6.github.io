@@ -4,27 +4,30 @@ body {
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center center;
-  font: 400 1.125em/1.38 Oswald;
+  font: 400 1em/1.38 Oswald;
   color: rgb(255, 255, 255);
+}
+
+div p {
+  margin-bottom: 1em;
 }
 
 .container {
   float: left;
   clear: both;
-  width: 56%;
-  height: 161px;
-  margin: 317px 0 0 22.7994791666%;
+  width: 69.5%;
+  height: 1px;
+  margin: 204px 0 0 16%;
+  background-color: rgba(4, 0, 0, 0);
 }
 
 .container .text {
   float: left;
-  width: 91.9642857142%;
-  height: 111px;
-  min-height: 50px;
-  margin: -235px 0 0 2.5902157738%;
-  background-color: rgba(0, 0, 0, 0.59);
+  width: 94.1964285714%;
+  min-height: 231px;
+  margin: -177px 0 0 2.81962%;
+  background-color: rgba(0, 0, 0, 0.93);
   font-size: 1em;
-  text-align: justify;
 }
 
 .text {
@@ -33,10 +36,10 @@ body {
 
 ._button {
   display: block;
-  position: relative;
+  float: left;
+  clear: both;
   border-radius: 3px;
-  background-color: rgb(222, 222, 222);
-  font-size: 0.889em;
+  font-size: 1em;
   text-align: center;
   color: rgb(0, 0, 0);
 }
@@ -45,31 +48,33 @@ body {
   width: 34.6666666666%;
   min-height: 60px;
   margin: 0 auto;
-  font-size: 1.778em;
+  font-size: 2em;
   text-align: center;
 }
 
 .container ._button-1 {
-  float: left;
-  z-index: 2;
-  width: 15.3865792944%;
-  height: 36px;
-  margin: -308px 0 0 2.59022%;
+  width: 19.6642685851%;
+  height: 31px;
+  margin: 135px 0 0 39.08873%;
+  background: url('../images/kickstarter-logo-light.png') rgb(222, 222, 222);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
 }
 
 .container ._button-2 {
-  float: right;
-  z-index: 3;
-  width: 15.9226190476%;
-  height: 36px;
-  margin: -313px 43.42448% 0 0;
+  width: 19.6642685851%;
+  height: 59px;
+  margin: 14px 0 0 39.0887290167%;
+  background: url('../images/GooglePlayIcon.png') rgba(222, 222, 222, 0);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center center;
 }
 
 .container ._button-3 {
-  float: left;
-  clear: both;
-  z-index: 4;
-  width: 10.863095238%;
+  width: 17.2661870503%;
   height: 27px;
-  margin: -299px 0 0 85.00047%;
+  margin: 36px 0 0 40.2877697841%;
+  background-color: rgb(222, 222, 222);
 }
