@@ -5,13 +5,11 @@ body {
 }
 
 .element {
-  position: relative;
   float: left;
   clear: both;
-  z-index: 4;
   width: 27.1666666666%;
   height: 407px;
-  margin: 63px 0 0 36.39974%;
+  margin: 20px 0 0 36.41667%;
   background: url('../images/PTScreenshot.png') rgb(30, 35, 108);
   background-repeat: no-repeat;
   background-size: contain;
@@ -19,14 +17,13 @@ body {
 }
 
 .text {
-  position: relative;
   float: left;
 }
 
 ._button {
   display: block;
-  margin-right: auto;
-  margin-left: auto;
+  float: left;
+  clear: both;
   border-radius: 3px;
   font-size: 1em;
   text-align: center;
@@ -34,10 +31,10 @@ body {
 }
 
 .text-1 {
-  z-index: 0;
-  width: 27.19921875%;
+  width: 27.1666666666%;
+  height: 49px;
   min-height: 104px;
-  margin: 34px 0 0 36.39974%;
+  margin: 34px 0 0 36.41667%;
   font-size: 2em;
   text-align: center;
   color: rgb(250, 242, 242);
@@ -45,27 +42,26 @@ body {
 
 .text-2 {
   clear: both;
-  z-index: 1;
-  width: 27.25%;
+  width: 26.4166666666%;
   min-height: 168px;
-  margin: -525px 0 0 37.1992199999%;
+  margin-left: 37.1992199999%;
   font-size: 1em;
   color: rgb(255, 255, 255);
 }
 
 ._button-1 {
-  width: 13.5989583333%;
+  width: 26.4166666666%;
   height: 46px;
-  margin-top: 625px;
+  margin: 16px 0 0 37.16667%;
   background: url('../images/GooglePlayIcon.png') rgba(222, 222, 222, 0);
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
   background-position: center center;
 }
 
 ._button-2 {
-  width: 7.4166666666%;
+  width: 12%;
   height: 24px;
-  margin-top: 23px;
+  margin: 34px 0 0 44%;
   background-color: rgb(222, 222, 222);
 }
