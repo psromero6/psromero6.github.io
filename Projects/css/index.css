@@ -11,14 +11,14 @@ body {
   z-index: 6;
   width: 20.4005208333%;
   height: 224px;
-  margin: 43px 0 0 39.4661458333%;
+  margin: 43px 0 0 39.46615%;
 }
 
 .container .text {
   float: left;
   width: 100.0829769579%;
   min-height: 224px;
-  margin: -1px 0 0 -0.082976958%;
+  margin: -1px 0 0 -0.08298%;
   font-size: 1em;
   text-align: center;
   color: rgb(255, 255, 255);
@@ -55,7 +55,7 @@ body {
   clear: both;
   width: 54.4%;
   min-height: 220px;
-  margin-left: 22.7994791666%;
+  margin-left: 22.79948%;
   font-size: 1em;
   color: rgb(255, 249, 249);
 }
@@ -83,7 +83,7 @@ body {
   z-index: 2;
   width: 9.8333333333%;
   height: 109px;
-  margin-left: 7.63151%;
+  margin-left: 7.63021%;
   background-image: url('../images/PterodactylIcon.png');
   background-color: rgba(222, 222, 222, 0);
   font-family: Arial;

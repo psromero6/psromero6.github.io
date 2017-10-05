@@ -9,7 +9,7 @@ body {
   clear: both;
   width: 27.1666666666%;
   height: 407px;
-  margin: 20px 0 0 36.4166666666%;
+  margin: 49px 0 0 36.41667%;
   background: url('../images/PTScreenshot.png') rgb(30, 35, 108);
   background-repeat: no-repeat;
   background-size: contain;
@@ -32,9 +32,9 @@ body {
 }
 
 .text-1 {
-  width: 27.1666666666%;
-  height: 49px;
-  margin: 34px 0 0 36.4166666666%;
+  width: 68%;
+  height: 50px;
+  margin: 34px 0 0 16%;
   font-size: 2em;
   text-align: center;
   color: rgb(250, 242, 242);
@@ -43,7 +43,7 @@ body {
 .text-2 {
   clear: both;
   width: 26.4166666666%;
-  margin-left: 37.19921875%;
+  margin: 92px 0 0 37.1992199999%;
   font-size: 1em;
   color: rgb(255, 255, 255);
 }
@@ -51,7 +51,7 @@ body {
 ._button-1 {
   width: 26.4166666666%;
   height: 46px;
-  margin: 16px 0 0 37.16667%;
+  margin: 15px 0 0 37.1992199999%;
   background: url('../images/GooglePlayIcon.png') rgba(222, 222, 222, 0);
   background-repeat: no-repeat;
   background-size: contain;
@@ -61,6 +61,6 @@ body {
 ._button-2 {
   width: 12%;
   height: 24px;
-  margin: 34px 0 0 44%;
+  margin: 29px 0 0 44%;
   background-color: rgb(222, 222, 222);
 }
