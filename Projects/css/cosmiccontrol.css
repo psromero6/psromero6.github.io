@@ -14,18 +14,13 @@ div p {
 
 .container {
   float: left;
-  clear: both;
-  width: 69.5%;
-  height: 1px;
-  margin: 204px 0 0 16%;
-  background-color: rgba(4, 0, 0, 0);
 }
 
 .container .text {
   float: left;
   width: 94.1964285714%;
   min-height: 231px;
-  margin: -177px 0 0 2.81962%;
+  margin: -177px 0 0 2.81863%;
   background-color: rgba(0, 0, 0, 0.93);
   font-size: 1em;
 }
@@ -37,11 +32,32 @@ div p {
 ._button {
   display: block;
   float: left;
-  clear: both;
+  min-width: 125px;
   border-radius: 3px;
   font-size: 1em;
   text-align: center;
   color: rgb(0, 0, 0);
+}
+
+.container-1 {
+  clear: both;
+  width: 68%;
+  height: 26px;
+  margin: 203px 0 0 16%;
+  background-color: rgba(4, 0, 0, 0);
+}
+
+.container-2 {
+  clear: both;
+  width: 100%;
+  height: 207px;
+  margin-top: 93px;
+}
+
+.container-3 {
+  width: 40.0735294117%;
+  height: 39px;
+  margin-left: 29.90196%;
 }
 
 .text-1 {
@@ -53,9 +69,10 @@ div p {
 }
 
 .container ._button-1 {
-  width: 38.0095923261%;
+  width: 95.0260902867%;
   height: 39px;
-  margin: 95px 0 0 30.45564%;
+  min-height: 39px;
+  margin-left: 1.1393556417%;
   background: url('../images/kickstarter-logo-light.png') rgb(222, 222, 222);
   background-repeat: no-repeat;
   background-size: contain;
@@ -63,9 +80,11 @@ div p {
 }
 
 .container ._button-2 {
-  width: 39.0887290167%;
+  clear: both;
+  width: 39.9509803921%;
   height: 59px;
-  margin: 38px 0 0 29.35252%;
+  min-height: 59px;
+  margin: 38px 0 0 30.02451%;
   background: url('../images/GooglePlayIcon.png') rgba(222, 222, 222, 0);
   background-repeat: no-repeat;
   background-size: contain;
@@ -73,8 +92,10 @@ div p {
 }
 
 .container ._button-3 {
-  width: 17.2661870503%;
+  clear: both;
+  width: 40.0735294117%;
   height: 27px;
-  margin: 44px 0 0 40.28777%;
+  min-height: 27px;
+  margin: 44px 0 0 29.90196%;
   background-color: rgb(222, 222, 222);
 }
